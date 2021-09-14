@@ -10,6 +10,55 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <div class="container">
+          <a class="navbar-brand" href="/">Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+             <li class="nav-item active">
+              <a class="fas fa-home nav-link text-light" href="user_id_path">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="fas fa-link nav-link text-light" href="users">Users</a>
+            </li>
+            <li class="nav-item">
+               <%= link_to "Books", books_path, class: 'fas fa-book-open nav-link text-light' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'fas fa-link nav-link text-light' %>
+            </li>
+            <% else %>
+             <li class="nav-item active">
+                <a class="fas fa-home nav-link text-light" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="fas fa-link nav-link text-light" href="#">About</a>
+              </li>
+              <li class="nav-item">
+               <%= link_to "sign up", new_user_registration_path, class: 'fas fa-user-plus nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+               <%= link_to "login", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-light' %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto"><p>CopyRight Infratop.inc</p></div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
